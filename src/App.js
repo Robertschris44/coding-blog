@@ -1,13 +1,18 @@
 import './App.css';
-import { Container, Row, Col } from 'react-bootstrap';
+// import { Container, Row, Col } from 'react-bootstrap';
+import LoginForm from './components/Login';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
-    <Container>
-      <Row>
-        <Col className='col'></Col>
-      </Row>
-    </Container>
+    <div>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <LoginForm />
+      </main>
+    </div>
   );
 }
 
