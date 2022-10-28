@@ -10,6 +10,11 @@ html {
   background-color:#F0F7F4;
 }
 
+.form-control:focus {
+  border-color: var(--light-blue);
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+} 
+
 #root {
   background-color: #F0F7F4;
 }
@@ -72,6 +77,10 @@ html {
 
 #formInput {
   background-color: var(--color-white);
+}
+
+#formInput:focus {
+  border:#01161E;
 }
 
 #subBtn {
