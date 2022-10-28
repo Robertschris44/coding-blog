@@ -6,6 +6,22 @@
 --color-white: #EFF6E0;
 }
 
+html {
+  background-color:#F0F7F4;
+}
+
+#root {
+  background-color: #F0F7F4;
+}
+
+#jumbotron {
+  margin-top: 50px;
+}
+
+#imgOne {
+  width: 30vw;
+}
+
 #navBar {
   background-color: var(--light-blue);
 }
@@ -15,7 +31,30 @@
 }
 
 #navLink {
+  text-decoration: none;
+  position: relative;
   color:var(--color-white);
+}
+
+#navLink:hover {
+  color:var(--color-white);
+}
+
+#navLink::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-white);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+#navLink:hover::before {
+  transform: scaleX(1);
 }
 
 #basic-nav-dropdown {
@@ -24,4 +63,18 @@
 
 #travLogo {
   width:5vw;
+}
+
+#loginForm {
+  color:var(--color-blue);
+  margin-top: 50px;
+}
+
+#formInput {
+  background-color: var(--color-white);
+}
+
+#subBtn {
+  background-color: var(--light-blue);
+  border:none;
 }
