@@ -1,11 +1,14 @@
 import React from 'react';
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
+import Logo from '../../src/assets/images/travelr-logo.png'
 
 
 function NavBar() {
   return (
     <Navbar id="navBar">
-        <Navbar.Brand id="navBrand" href="#home">Travelog</Navbar.Brand>
+        <Image id ="travLogo" src={Logo}></Image>
+        <Navbar.Brand id="navBrand" href="#home">Travelogr
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
