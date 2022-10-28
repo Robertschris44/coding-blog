@@ -6,6 +6,21 @@ const typeDefs = gql`
     description: String!
     createdAt: String!
     authorName: String!
+    comments: [Comment]!
+    likes: [Like]!
+  }
+
+  type Comment {
+    id: ID!
+    createdAt: String!
+    authorName: String!
+    body: String!
+  }
+
+  type Like {
+    id: ID!
+    createdAt: String!
+    authorName: String!
   }
 
   type Query {
@@ -33,6 +48,9 @@ const typeDefs = gql`
     login(authorName: String!, password: String!): Author!
     createBlog(description: String!): Blog!
     deleteBlog(blogId: ID!): String!
+    createComment(blogId: String!, body: String!): Blog!
+    deleteComment(blogId: ID!, commentId: ID!): Blog!
+    likeBlog(blogId: ID!): Blog!
   }
 `;
 module.exports = typeDefs;
