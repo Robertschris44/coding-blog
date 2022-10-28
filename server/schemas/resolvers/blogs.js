@@ -1,4 +1,4 @@
-const { AuthenticationError } = require("apollo-server");
+const { AuthenticationError, UserInputError } = require("apollo-server");
 
 const Blog = require("../../models/Blog");
 const checkAuth = require("../../util/check-auth");
@@ -57,6 +57,28 @@ module.exports = {
       } catch (err) {
         throw new Error(err);
       }
+    },
+    async likeBlog(_, { blogId }, context) {
+      const { authorName } = checkAuth(context);
+
+      const blog = await Blog.findById(blogId);
+      if (blog) {
+        if (blog.likes.find((like) => like.authorName === authorName)) {
+          // Blog already likes, unlike it
+          blog.likes = blog.likes.filter(
+            (like) => like.authorName !== authorName
+          );
+          await blog.save();
+        } else {
+          //Not liked, like blog
+          blog.likes.push({
+            authorName,
+            createdAt: new Date().toISOString(),
+          });
+        }
+        await blog.save();
+        return blog;
+      } else throw new UserInputError("Post not found");
     },
   },
 };
