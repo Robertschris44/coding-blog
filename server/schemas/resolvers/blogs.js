@@ -7,7 +7,7 @@ module.exports = {
   Query: {
     async getBlogs() {
       try {
-        const blogs = await Blog.find();
+        const blogs = await Blog.find().sort({ createdAt: -1 });
         return blogs;
       } catch (error) {
         throw new Error(error);
@@ -41,6 +41,22 @@ module.exports = {
       const blog = await newBlog.save();
 
       return blog;
+    },
+    async deleteBlog(_, { blogId }, context) {
+      const author = checkAuth(context);
+      console.log(author);
+
+      try {
+        const blog = await Blog.findById(blogId);
+        if (author.authorName === blog.authorName) {
+          await blog.delete();
+          return "Blog deleted successfully";
+        } else {
+          throw new AuthenticationError("Action not allowed");
+        }
+      } catch (err) {
+        throw new Error(err);
+      }
     },
   },
 };
