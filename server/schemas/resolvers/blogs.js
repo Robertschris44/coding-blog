@@ -10,5 +10,18 @@ module.exports = {
         throw new Error(error);
       }
     },
+    async getBlog(_, { blogId }) {
+      try {
+        const blog = await Blog.findById(blogId);
+
+        if (blog) {
+          return blog;
+        } else {
+          throw new Error("Blog not found");
+        }
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
   },
 };

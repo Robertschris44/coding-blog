@@ -10,6 +10,7 @@ const typeDefs = gql`
 
   type Query {
     getBlogs: [Blog]
+    getBlog(blogId: ID!): Blog
   }
 
   type Author {
@@ -30,6 +31,7 @@ const typeDefs = gql`
   type Mutation {
     register(registerInput: RegisterInput): Author!
     login(authorName: String!, password: String!): Author!
+    createBlog(body: String!): Blog!
   }
 `;
 module.exports = typeDefs;
