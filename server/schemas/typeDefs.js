@@ -31,7 +31,8 @@ const typeDefs = gql`
   type Mutation {
     register(registerInput: RegisterInput): Author!
     login(authorName: String!, password: String!): Author!
-    createBlog(body: String!): Blog!
+    createBlog(description: String!): Blog!
+    deleteBlog(blogId: ID!): String!
   }
 `;
 module.exports = typeDefs;

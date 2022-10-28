@@ -1,4 +1,7 @@
+const { AuthenticationError } = require("apollo-server");
+
 const Blog = require("../../models/Blog");
+const checkAuth = require("../../util/check-auth");
 
 module.exports = {
   Query: {
@@ -22,6 +25,22 @@ module.exports = {
       } catch (error) {
         throw new Error(error);
       }
+    },
+  },
+  Mutation: {
+    async createBlog(_, { description }, context) {
+      const author = checkAuth(context);
+      console.log(author);
+
+      const newBlog = new Blog({
+        description,
+        author: author.id,
+        authorName: author.authorName,
+        createdAt: new Date().toISOString(),
+      });
+      const blog = await newBlog.save();
+
+      return blog;
     },
   },
 };
