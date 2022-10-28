@@ -29,6 +29,7 @@ const typeDefs = gql`
 
   type Mutation {
     register(registerInput: RegisterInput): Author!
+    login(authorName: String!, password: String!): Author!
   }
 `;
 module.exports = typeDefs;

@@ -1,21 +1,80 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { UserInputError } = require("apollo-server");
 
+const {
+  validateRegisterInput,
+  validateLoginInput,
+} = require("../../util/validators");
 const { SECRET_KEY } = require("../../config");
 const Author = require("../../models/Author");
 
+function generateToken(author) {
+  return jwt.sign(
+    {
+      id: author.id,
+      email: author.email,
+      authorName: author.authorName,
+    },
+    SECRET_KEY,
+    { expiresIn: "1h" }
+  );
+}
+
 module.exports = {
   Mutation: {
+    async login(_, { authorName, password }) {
+      const { errors, valid } = validateLoginInput(authorName, password);
+
+      if (!valid) {
+        throw new UserInputError("Errors", { errors });
+      }
+
+      const author = await Author.findOne({ authorName });
+
+      if (!author) {
+        errors.general = "Author not found";
+        throw new UserInputError("Author not found", { errors });
+      }
+
+      const match = await bcrypt.compare(password, author.password);
+      if (!match) {
+        errors.general = "Wrong crendetials";
+        throw new UserInputError("Wrong crendetials", { errors });
+      }
+
+      const token = generateToken(author);
+
+      return {
+        ...author._doc,
+        id: author._id,
+        token,
+      };
+    },
     async register(
       _,
-      { registerInput: { authorName, email, password, confirmPassword } },
-      context,
-      info
+      { registerInput: { authorName, email, password, confirmPassword } }
     ) {
-      // TODO: Validate Author Data
-      // TODO: Make sure user doesn't already exist
-      // TODO: Hash password and create auth token
-
+      // Validate author data
+      const { valid, errors } = validateRegisterInput(
+        authorName,
+        email,
+        password,
+        confirmPassword
+      );
+      if (!valid) {
+        throw new UserInputError("Errors", { errors });
+      }
+      // TODO: Make sure author doesnt already exist
+      const author = await Author.findOne({ authorName });
+      if (author) {
+        throw new UserInputError("AuthorName is taken", {
+          errors: {
+            authorName: "This authorName is taken",
+          },
+        });
+      }
+      // hash password and create an auth token
       password = await bcrypt.hash(password, 12);
 
       const newAuthor = new Author({
@@ -26,15 +85,8 @@ module.exports = {
       });
 
       const res = await newAuthor.save();
-      const token = jwt.sign(
-        {
-          id: res.id,
-          email: res.email,
-          authorName: res.authorName,
-        },
-        SECRET_KEY,
-        { expiresIn: "1h" }
-      );
+
+      const token = generateToken(res);
 
       return {
         ...res._doc,
