@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed": "node seeders/seeds.js",
+    "serve": "node server",
     "start": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +15,9 @@
   "dependencies": {
     "apollo-server": "^3.10.3",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "faker": "^6.6.6",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.0"

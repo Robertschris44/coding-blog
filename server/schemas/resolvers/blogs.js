@@ -1,4 +1,5 @@
 const { AuthenticationError, UserInputError } = require("apollo-server");
+const { argsToArgsConfig } = require("graphql/type/definition");
 
 const Blog = require("../../models/Blog");
 const checkAuth = require("../../util/check-auth");
@@ -31,6 +32,10 @@ module.exports = {
     async createBlog(_, { description }, context) {
       const author = checkAuth(context);
       console.log(author);
+
+      if (description.trim() === "") {
+        throw new Error("Blog description must not be empty.");
+      }
 
       const newBlog = new Blog({
         description,
