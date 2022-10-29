@@ -14,27 +14,28 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "cd server && node server.js",
+    "build": "cd client && npm run build",
+    "seed": "cd server && npm run seed",
+    "server": "node ./server/server.js",
+    "client": "npm start --prefix client",
+    "start:prod": "cd server && npm start",
+    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "heroku-postbuild": "cd client && npm run build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^3.7.1",
+    "apollo-server-express": "^3.10.3",
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "graphql-tag": "^2.12.6",
+    "if-env": "^1.0.4"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "concurrently": "^5.2.0"
   }
 }
