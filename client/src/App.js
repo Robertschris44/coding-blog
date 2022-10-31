@@ -6,9 +6,9 @@ import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 
 import MenuBar from "./components/MenuBar";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login"
+import Register from "./Pages/Register";
 
 function App() {
   return (
