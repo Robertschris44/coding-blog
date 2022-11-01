@@ -7,8 +7,9 @@ import "./App.css";
 import MenuBar from "./components/MenuBar";
 import Home from "./pages/Home";
 import Login from "./pages/Login"
-
 import Register from "./pages/Register";
+
+
 
 // const pageChanger = () => {
 //   if (currentPage === 'Home'){
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
       </Container>
+      <Login />
     </Router>
 
     // {pageChanger()}

@@ -4,6 +4,7 @@ import React from "react";
 
 import { Container, Divider, Grid, Header, Image, List, Menu, Segment, Dropdown, } from 'semantic-ui-react';
 import Login from "./Login";
+import Register from "./Register";
 
 
 
@@ -16,6 +17,8 @@ function Home() {
   //   }
   return (
     <div>
+
+<Register />
 
       <Menu fixed="top" inverted>
         <Container>
@@ -68,10 +71,13 @@ function Home() {
             </Grid.Column>
           </Grid>
         </Container>
+        
       </Segment>
 
+     
+
       
-      <h1>Home Page</h1>
+  
 
     </div>
     
