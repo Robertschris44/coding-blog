@@ -7,7 +7,7 @@ function Login() {
     <Grid textAlign="center" style={{ height: '100vh'}} verticalAlign='middle'>
       <Grid.Column style={{maxWidth: 450}}>
         <Header>
-          Log-in to your account
+          Log-in to your account!
         </Header>
         <Form size='large'>
           <Segment stacked>
