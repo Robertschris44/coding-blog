@@ -1,6 +1,7 @@
 import React from "react";
 // import { useQuery } from "@apollo/react-hooks";
 // import gql from "graphql-tag";
+
 import { Container, Divider, Grid, Header, Image, List, Menu, Segment, Dropdown, } from 'semantic-ui-react';
 import Login from "./Login";
 
@@ -15,6 +16,7 @@ function Home() {
   //   }
   return (
     <div>
+
       <Menu fixed="top" inverted>
         <Container>
           <Menu.Item as='a' header>
@@ -69,6 +71,7 @@ function Home() {
       </Segment>
 
       
+      <h1>Home Page</h1>
 
     </div>
     
