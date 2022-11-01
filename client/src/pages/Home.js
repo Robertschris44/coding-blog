@@ -22,7 +22,7 @@ function Home() {
         ) : (
           blogs &&
           blogs.map((blog) => (
-            <Grid.Column key={blog.id}>
+            <Grid.Column key={blog.id} style={{ marginBottom: 20 }}>
               <PostCard blog={blog} />
             </Grid.Column>
           ))

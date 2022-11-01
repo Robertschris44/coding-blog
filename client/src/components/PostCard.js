@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Icon, Label, Image } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 function PostCard({
@@ -14,7 +15,7 @@ function PostCard({
   },
 }) {
   return (
-    <Card>
+    <Card fluid>
       <Card.Content>
         <Image
           floated="right"
@@ -22,7 +23,9 @@ function PostCard({
           src="https://react.semantic-ui.com/images/avatar/large/molly.png"
         />
         <Card.Header>{authorName}</Card.Header>
-        <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
+        <Card.Meta as={Link} to={`/blogs/${id}`}>
+          {moment(createdAt).fromNow(true)}
+        </Card.Meta>
         <Card.Description>{description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
