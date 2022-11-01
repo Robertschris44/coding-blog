@@ -2,6 +2,7 @@ import React from "react";
 // import { useQuery } from "@apollo/react-hooks";
 // import gql from "graphql-tag";
 import { Container, Divider, Grid, Header, Image, List, Menu, Segment, Dropdown, } from 'semantic-ui-react';
+import Login from "./Login";
 
 
 
@@ -51,10 +52,10 @@ function Home() {
             <Grid.Column width={3}>
               <Header inverted as='h4' content='GitHub Links' />
               <List link inverted>
-                <List.Item as='a'>Chris</List.Item>
-                <List.Item as='a'>Sumit</List.Item>
-                <List.Item as='a'>Damian</List.Item>
-                <List.Item as='a'>Chip</List.Item>
+                <List.Item href="https://github.com/Robertschris44" as='a'>Chris</List.Item>
+                <List.Item href="https://github.com/sumitsann" as='a'>Sumit</List.Item>
+                <List.Item href="https://github.com/damiandlg" as='a'>Damian</List.Item>
+                <List.Item href="http://github.com/ChipHvzvrd" as='a'>Chip</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
@@ -66,10 +67,11 @@ function Home() {
           </Grid>
         </Container>
       </Segment>
-      
+
       
 
     </div>
+    
   );
 }
 

@@ -10,6 +10,18 @@ import Home from "./pages/Home";
 import Login from "./pages/Login"
 import Register from "./pages/Register";
 
+// const pageChanger = () => {
+//   if (currentPage === 'Home'){
+//     return <Home />
+//   }
+//   else if (currentPage === 'Login'){
+//     return <Login />
+//   }
+//   else if (currentPage === 'Register'){
+//     return <Register />
+//   }
+// }
+
 function App() {
   return (
     <Router>
@@ -20,6 +32,9 @@ function App() {
         <Route exact path="/register" component={Register} />
       </Container>
     </Router>
+
+    // {pageChanger()}
+
   );
 }
 
