@@ -14,6 +14,14 @@ function PostCard({
     likes,
   },
 }) {
+  function likeBlog() {
+    console.log("Like the blog");
+  }
+
+  function commentOnBlog() {
+    console.log("Comment the blog");
+  }
+
   return (
     <Card fluid>
       <Card.Content>
@@ -29,13 +37,22 @@ function PostCard({
         <Card.Description>{description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Button as="div" labelPosition="right">
-          <Button color="teal">
+        <Button as="div" labelPosition="right" onClick={likeBlog}>
+          <Button color="teal" basic>
             <Icon name="heart" />
             Like
           </Button>
           <Label basic color="teal" pointing="left">
             {likeCount}
+          </Label>
+        </Button>
+        <Button as="div" labelPosition="right" onClick={commentOnBlog}>
+          <Button color="blue" basic>
+            <Icon name="comments" />
+            Comments
+          </Button>
+          <Label basic color="blue" pointing="left">
+            {commentCount}
           </Label>
         </Button>
       </Card.Content>
