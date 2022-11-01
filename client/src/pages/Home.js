@@ -32,7 +32,7 @@ function Home() {
 
       <Container text style={{ marginTop: '7em' }}>
         <Header as='h1'>HomePage</Header>
-        <p>Welcome to TechBlog!</p>
+        <p>Welcome to TechBlog</p>
         <p>Here people in Tech all over the world can share ideas, insights, and connect with each other</p>
       </Container>
 
