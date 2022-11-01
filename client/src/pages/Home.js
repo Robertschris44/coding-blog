@@ -17,7 +17,7 @@ function Home() {
       <Menu fixed="top" inverted>
         <Container>
           <Menu.Item as='a' header>
-            Tech Blog
+            Tech Blog!
           </Menu.Item>
           <Menu.Item as='a'>Home Page</Menu.Item>
 
