@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Contact from './pages/Contact';
+import Blog from './pages/Blog';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/Contact" component={Contact} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="./blogs" component={Blog} />
       </Container>
     </Router>
   );

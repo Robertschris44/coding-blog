@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Logo from '../assets/images/techLogo.png'
 
 function MenuBar() {
   const pathname = window.location.pathname;
@@ -12,6 +13,14 @@ function MenuBar() {
 
   return (
     <Menu pointing secondary size="massive" color="teal">
+      <Image id="techLogo" src={Logo} />
+      <Menu.Item
+        id="title"
+        name="Tech-Knowledg-E"
+        onClick={handleItemClick}
+        as={Link}
+        to="/"
+      />
       <Menu.Item
         name="home"
         active={activeItem === 'home'}

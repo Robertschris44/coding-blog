@@ -1,8 +1,26 @@
+@font-face {
+  font-family: "Nanum Gothic";
+  src: url("./assets/fonts/NanumGothic-ExtraBold.ttf");
+}
+
+#title {
+  opacity: 70%;
+  color: #008080;
+  font-family:"Nanum Gothic";
+  font-weight: bolder;
+}
+
 .page-title {
   display: block !important;
   text-align: center;
   font-size: 2rem;
   margin-top: 10px;
+}
+
+#techLogo {
+  opacity: 70%;
+  height: 3vw;
+  width: 3vw;
 }
 
 .form-container {
@@ -11,6 +29,7 @@
 }
 
 #commentArea {
+  font-size: 125%;
   width:22vw;
   height: 200px;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Checkbox, Grid, Image, Input, Icon } from "semantic-ui-react";
+import { Form, Button, Checkbox, Grid, Input, Icon } from "semantic-ui-react";
 
 function Contact() {
     return(
