@@ -1,6 +1,6 @@
 import express from 'express';
-import Login from '../../client/src/pages/Login';
-import { getAllAuthor, signup } from '../controllers/user-controller';
+import Login from '../schemas/resolvers/authors';
+import { getAllAuthor, signup } from '../schemas/resolvers/authors';
 
 const router = express.Router();
 
