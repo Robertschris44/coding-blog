@@ -1,45 +1,48 @@
-import React, { useState } from 'react';
-import { Button, Form } from 'semantic-ui-react';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import React, { useContext, useState } from "react";
+import { Button, Form } from "semantic-ui-react";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
-import { useForm } from '../util/hooks';
+import { AuthContext } from "../context/auth";
+import { useForm } from "../util/hooks";
 
 function Login(props) {
+  const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
-
-  const { onChange, onSubmit, values } = useForm(loginUserCallback, {
-    username: '',
-    password: ''
+  const { onChange, onSubmit, values } = useForm(loginAuthorCallback, {
+    authorName: "",
+    password: "",
   });
 
-  const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-    update(_, result) {
-      props.history.push('/');
+  const [loginAuthor, { loading }] = useMutation(LOGIN_AUTHOR, {
+    update(_, { data: { login: authorData } }) {
+      context.login(authorData);
+      props.history.push("/");
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
-    variables: values
+    variables: values,
   });
 
-  function loginUserCallback() {
-    loginUser();
+  function loginAuthorCallback() {
+    loginAuthor();
   }
 
   return (
     <div className="form-container">
-      <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
+      <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""}>
         <h1>Login</h1>
         <Form.Input
-          label="Username"
-          placeholder="Username.."
-          name="username"
+          label="Authorname"
+          placeholder="Authorname.."
+          name="authorName"
           type="text"
-          value={values.username}
-          error={errors.username ? true : false}
+          value={values.authorName}
+          error={errors.authorName ? true : false}
           onChange={onChange}
         />
+
         <Form.Input
           label="Password"
           placeholder="Password.."
@@ -49,6 +52,7 @@ function Login(props) {
           error={errors.password ? true : false}
           onChange={onChange}
         />
+
         <Button type="submit" primary>
           Login
         </Button>
@@ -66,12 +70,16 @@ function Login(props) {
   );
 }
 
-const LOGIN_USER = gql`
-  mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
+const LOGIN_AUTHOR = gql`
+  mutation login($authorName: String!, $password: String!) {
+    login(
+      authorName: $authorName
+
+      password: $password
+    ) {
       id
       email
-      username
+      authorName
       createdAt
       token
     }
