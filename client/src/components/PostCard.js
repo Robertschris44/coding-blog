@@ -30,19 +30,19 @@ function PostCard({
           size="mini"
           src="https://react.semantic-ui.com/images/avatar/large/molly.png"
         />
-        <Card.Header>{authorName}</Card.Header>
-        <Card.Meta as={Link} to={`/blogs/${id}`}>
+        <Card.Header as={Link} to={`/blogs/${id}`}>{authorName}</Card.Header>
+        <Card.Meta>
           {moment(createdAt).fromNow(true)}
         </Card.Meta>
         <Card.Description>{description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
         <Button as="div" labelPosition="right" onClick={likeBlog}>
-          <Button color="teal" basic>
+          <Button color="basic red" basic>
             <Icon name="heart" />
             Like
           </Button>
-          <Label basic color="teal" pointing="left">
+          <Label basic color="basic red" pointing="left">
             {likeCount}
           </Label>
         </Button>
