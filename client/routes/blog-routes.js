@@ -1,5 +1,5 @@
 import express from 'express';
-import {getBlogs} from "../schemas/resolvers/blogs"
+import {getBlogs} from "../src/pages/Home"
 const blogRouter = express.Router();
 
 blogRouter.get("/", getBlogs);
