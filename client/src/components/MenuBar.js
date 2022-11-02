@@ -35,6 +35,13 @@ function MenuBar() {
           as={Link}
           to="/register"
         />
+        <Menu.Item
+          name="contact"
+          active={activeItem === 'contact'}
+          onClick={handleItemClick}
+          as={Link}
+          to="/contact"
+        />
       </Menu.Menu>
     </Menu>
   );

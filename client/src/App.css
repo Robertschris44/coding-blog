@@ -9,3 +9,12 @@
   width: 400px;
   margin: auto;
 }
+
+#commentArea {
+  width:22vw;
+  height: 200px;
+}
+
+#commentCol {
+  text-align: center;
+}
