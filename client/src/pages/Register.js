@@ -1,45 +1,49 @@
-import React, { useState } from 'react';
-import { Button, Form } from 'semantic-ui-react';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import React, { useContext, useState } from "react";
+import { Button, Form } from "semantic-ui-react";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
-import { useForm } from '../util/hooks';
+import { AuthContext } from "../context/auth";
+import { useForm } from "../util/hooks";
 
 function Register(props) {
+  const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
 
   const { onChange, onSubmit, values } = useForm(registerUser, {
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    authorName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
-  const [addUser, { loading }] = useMutation(REGISTER_USER, {
-    update(_, result) {
-      props.history.push('/');
+  const [addAuthor, { loading }] = useMutation(REGISTER_AUTHOR, {
+    update(_, { data: { register: authorData } }) {
+      context.login(authorData);
+
+      props.history.push("/");
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
-    variables: values
+    variables: values,
   });
 
   function registerUser() {
-    addUser();
+    addAuthor();
   }
 
   return (
     <div className="form-container">
-      <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
+      <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""}>
         <h1>Register</h1>
         <Form.Input
-          label="Username"
-          placeholder="Username.."
-          name="username"
+          label="Authorname"
+          placeholder="Authorname.."
+          name="authorName"
           type="text"
-          value={values.username}
-          error={errors.username ? true : false}
+          value={values.authorName}
+          error={errors.authorName ? true : false}
           onChange={onChange}
         />
         <Form.Input
@@ -86,16 +90,16 @@ function Register(props) {
   );
 }
 
-const REGISTER_USER = gql`
+const REGISTER_AUTHOR = gql`
   mutation register(
-    $username: String!
+    $authorName: String!
     $email: String!
     $password: String!
     $confirmPassword: String!
   ) {
     register(
       registerInput: {
-        username: $username
+        authorName: $authorName
         email: $email
         password: $password
         confirmPassword: $confirmPassword
@@ -103,7 +107,7 @@ const REGISTER_USER = gql`
     ) {
       id
       email
-      username
+      authorName
       createdAt
       token
     }
