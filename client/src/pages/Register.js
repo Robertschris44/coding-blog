@@ -17,6 +17,8 @@ function Register(props) {
 
   const [addAuthor, { loading }] = useMutation(REGISTER_AUTHOR, {
     update(_, result) {
+      console.log(result);
+
       props.history.push("/");
     },
     onError(err) {

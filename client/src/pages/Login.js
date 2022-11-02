@@ -7,14 +7,14 @@ import { useForm } from "../util/hooks";
 
 function Login(props) {
   const [errors, setErrors] = useState({});
-
-  const { onChange, onSubmit, values } = useForm(loginUserCallback, {
+  const { onChange, onSubmit, values } = useForm(loginAuthorCallback, {
     authorName: "",
     password: "",
   });
 
-  const [loginUser, { loading }] = useMutation(LOGIN_USER, {
+  const [loginAuthor, { loading }] = useMutation(LOGIN_AUTHOR, {
     update(_, result) {
+      console.log(result);
       props.history.push("/");
     },
     onError(err) {
@@ -23,8 +23,8 @@ function Login(props) {
     variables: values,
   });
 
-  function loginUserCallback() {
-    loginUser();
+  function loginAuthorCallback() {
+    loginAuthor();
   }
 
   return (
@@ -34,12 +34,13 @@ function Login(props) {
         <Form.Input
           label="Authorname"
           placeholder="Authorname.."
-          name="authorname"
+          name="authorName"
           type="text"
           value={values.authorName}
           error={errors.authorName ? true : false}
           onChange={onChange}
         />
+
         <Form.Input
           label="Password"
           placeholder="Password.."
@@ -49,6 +50,7 @@ function Login(props) {
           error={errors.password ? true : false}
           onChange={onChange}
         />
+
         <Button type="submit" primary>
           Login
         </Button>
@@ -66,9 +68,13 @@ function Login(props) {
   );
 }
 
-const LOGIN_USER = gql`
+const LOGIN_AUTHOR = gql`
   mutation login($authorName: String!, $password: String!) {
-    login(loginInput: { authorName: $username, password: $password }) {
+    login(
+      authorName: $authorName
+
+      password: $password
+    ) {
       id
       email
       authorName
