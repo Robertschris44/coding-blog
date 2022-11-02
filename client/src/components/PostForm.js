@@ -6,6 +6,7 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 import { useForm } from "../util/hooks";
+import { FETCH_BLOGS_QUERY } from "../util/graphql";
 
 function PostForm() {
   const { values, onChange, onSubmit } = useForm(createBlogCallback, {
@@ -14,8 +15,12 @@ function PostForm() {
 
   const [createBlog, { error }] = useMutation(CREATE_BLOG_MUTATION, {
     variables: values,
-    update(_, result) {
-      console.log(result);
+    update(proxy, result) {
+      const data = proxy.readQuery({
+        query: FETCH_BLOGS_QUERY,
+      });
+      data.getBlogs = [result.data.createBlog, ...data.getBlogs];
+      proxy.writeQuery({ query: FETCH_BLOGS_QUERY, data });
       values.description = "";
     },
   });
