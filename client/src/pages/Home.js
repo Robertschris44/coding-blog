@@ -1,38 +1,57 @@
 import React from "react";
-// import { useQuery } from "@apollo/react-hooks";
-// import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+import { Grid } from "semantic-ui-react";
+
+import PostCard from "../components/PostCard";
 
 function Home() {
-  //   const { loading, data } = useQuery(FETCH_BLOGS_QUERY);
-  //   if (data) {
-  //     console.log(data);
-  //   }
+  const {
+    loading,
+    data: { getBlogs: blogs },
+  } = useQuery(FETCH_BLOGS_QUERY);
+
   return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
+    <Grid columns={3}>
+      <Grid.Row>
+        <h1> Recent Blogs</h1>
+      </Grid.Row>
+      <Grid.Row>
+        {loading ? (
+          <h1>Loading Blogs ..</h1>
+        ) : (
+          blogs &&
+          blogs.map((blog) => (
+            <Grid.Column key={blog.id} style={{ marginBottom: 20 }}>
+              <PostCard blog={blog} />
+            </Grid.Column>
+          ))
+        )}
+      </Grid.Row>
+    </Grid>
   );
 }
 
-// const FETCH_BLOGS_QUERY = gql`
-//   {
-//     getBlogs {
-//       id
-//       description
-//       createdAt
-//       authorName
-//       commentCount
-//       comments {
-//         id
-//         body
-//         authorName
-//       }
-//       likeCount
-//       likes {
-//         authorName
-//       }
-//     }
-//   }
-// `;
+const FETCH_BLOGS_QUERY = gql`
+  {
+    getBlogs {
+      description
+      createdAt
+      id
+      authorName
+      likeCount
+      commentCount
+      comments {
+        authorName
+        body
+        createdAt
+      }
+      likes {
+        authorName
+        createdAt
+      }
+    }
+  }
+`;
 
 export default Home;
