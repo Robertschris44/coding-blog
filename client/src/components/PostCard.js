@@ -1,7 +1,11 @@
-import React from "react";
-import { Button, Card, Icon, Label, Image } from "semantic-ui-react";
+import React, { useContext } from "react";
+import { Button, Card, Icon, Label, Image, Popup } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+
+import { AuthContext } from "../context/auth";
+import LikeButton from "./LikeButton";
+import DeleteButton from "./DeleteButton.js";
 
 function PostCard({
   blog: {
@@ -14,13 +18,7 @@ function PostCard({
     likes,
   },
 }) {
-  function likeBlog() {
-    console.log("Like the blog");
-  }
-
-  function commentOnBlog() {
-    console.log("Comment the blog");
-  }
+  const { author } = useContext(AuthContext);
 
   return (
     <Card fluid>
@@ -37,24 +35,25 @@ function PostCard({
         <Card.Description>{description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Button as="div" labelPosition="right" onClick={likeBlog}>
-          <Button color="teal" basic>
-            <Icon name="heart" />
-            Like
-          </Button>
-          <Label basic color="teal" pointing="left">
-            {likeCount}
-          </Label>
-        </Button>
-        <Button as="div" labelPosition="right" onClick={commentOnBlog}>
-          <Button color="blue" basic>
-            <Icon name="comments" />
-            Comments
-          </Button>
-          <Label basic color="blue" pointing="left">
-            {commentCount}
-          </Label>
-        </Button>
+        <LikeButton author={author} blog={{ id, likes, likeCount }} />
+        <Popup
+          content="Comment on blog"
+          trigger={
+            <Button labelPosition="right" as={Link} to={`/blogs/${id}`}>
+              <Button color="blue" basic>
+                <Icon name="comments" />
+                Comments
+              </Button>
+              <Label basic color="blue" pointing="left">
+                {commentCount}
+              </Label>
+            </Button>
+          }
+        />
+
+        {author && author.authorName === authorName && (
+          <DeleteButton blogId={id} />
+        )}
       </Card.Content>
     </Card>
   );

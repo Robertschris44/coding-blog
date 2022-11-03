@@ -19,7 +19,8 @@ A coding blog for the tech frenzy people that includes the tutorial for the diff
 
 ## Usage
 
-- npm start
+- cd server && npm start
+- cd client && npm start
 
 ## Contribution
 
@@ -38,3 +39,9 @@ Sumit Ojha
 ## Website
 
 ## Screenshots
+
+![](./images/Screenshot-1.jpg)
+![](./images/Screenshot-2.jpg)
+![](./images/Screenshot-3.jpg)
+![](./images/Screenshot-4.jpg)
+![](./images/Screenshot-5.jpg)
