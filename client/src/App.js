@@ -12,7 +12,7 @@ import MenuBar from "./components/MenuBar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-//import SingleBlog from "./pages/SingleBlog";
+import SingleBlog from "./pages/SingleBlog";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
+          <Route exact path="/blogs/:blogId" component={SingleBlog} />
         </Container>
       </Router>
     </AuthProvider>
