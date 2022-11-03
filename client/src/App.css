@@ -46,3 +46,25 @@
 #foot-container {
   position: relative;
 }
+
+#con-image {
+  padding-top: 30px;
+  padding-bottom: 5px;
+  height: 300px;
+}
+
+
+#aboutGrid {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#aboutGrid li {
+  margin-bottom: 20px;
+  list-style:disc;
+  font-size: 20px;
+}
+
+#aboutGrid h2{
+  margin-top: 40px;
+}

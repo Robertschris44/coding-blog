@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Button, Checkbox, Grid, Input, Icon, Container } from "semantic-ui-react";
 
+
 function Contact() {
     return(
       <Container id="contactForm">
