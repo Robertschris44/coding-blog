@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/react-hooks";
 // import gql from "graphql-tag";
 import { Grid, Container} from "semantic-ui-react";
 

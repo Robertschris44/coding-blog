@@ -13,7 +13,7 @@ function PostForm() {
     description: "",
   });
 
-  const [createBlog] = useMutation(CREATE_BLOG_MUTATION, {
+  const [createBlog, { error }] = useMutation(CREATE_BLOG_MUTATION, {
     variables: values,
     update(proxy, result) {
       const data = proxy.readQuery({
