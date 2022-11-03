@@ -13,6 +13,25 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
+import SingleBlog from "./pages/SingleBlog";
+
+import Footer from "./pages/Footer";
+
+
+
+// const pageChanger = () => {
+//   if (currentPage === 'Home'){
+//     return <Home />
+//   }
+//   else if (currentPage === 'Login'){
+//     return <Login />
+//   }
+//   else if (currentPage === 'Register'){
+//     return <Register />
+//   }
+// }
+
+
 function App() {
   return (
     <AuthProvider>
@@ -22,8 +41,10 @@ function App() {
           <Route exact path="/" component={Home} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
+          <Route exact path="/blogs/:blogId" component={SingleBlog} />
         </Container>
       </Router>
+      <Footer />
     </AuthProvider>
   );
 }
