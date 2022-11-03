@@ -12,9 +12,6 @@ import MenuBar from "./components/MenuBar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
-import SingleBlog from "./pages/SingleBlog";
-
 import Footer from "./pages/Footer";
 
 
@@ -31,7 +28,6 @@ import Footer from "./pages/Footer";
 //   }
 // }
 
-
 function App() {
   return (
     <AuthProvider>
@@ -41,7 +37,6 @@ function App() {
           <Route exact path="/" component={Home} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
-          <Route exact path="/blogs/:blogId" component={SingleBlog} />
         </Container>
       </Router>
       <Footer />

@@ -1,4 +1,5 @@
 import React from "react";
+import { ValuesOfCorrectTypeRule } from "graphql";
 
 import { Button, Form } from "semantic-ui-react";
 import gql from "graphql-tag";
@@ -28,30 +29,20 @@ function PostForm() {
     createBlog();
   }
   return (
-    <>
-      <Form onSubmit={onSubmit}>
-        <h2>Create a blog:</h2>
-        <Form.Field>
-          <Form.Input
-            placeholder="Coding Blog"
-            name="description"
-            onChange={onChange}
-            value={values.body}
-            error={error ? true : false}
-          />
-          <Button type="submit" color="teal">
-            Submit
-          </Button>
-        </Form.Field>
-      </Form>
-      {error && (
-        <div className="ui error message">
-          <ul className="list">
-            <li>{error.graphQLErrors[0].message}</li>
-          </ul>
-        </div>
-      )}
-    </>
+    <Form onSubmit={onSubmit}>
+      <h2>Create a blog:</h2>
+      <Form.Field>
+        <Form.Input
+          placeholder="Coding Blog"
+          name="description"
+          onChange={onChange}
+          value={values.body}
+        />
+        <Button type="submit" color="teal">
+          Submit
+        </Button>
+      </Form.Field>
+    </Form>
   );
 }
 

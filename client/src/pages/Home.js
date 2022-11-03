@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { Grid, Transition } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 import { AuthContext } from "../context/auth";
 import PostCard from "../components/PostCard";
@@ -28,14 +28,12 @@ function Home() {
         {loading ? (
           <h1>Loading Blogs ..</h1>
         ) : (
-          <Transition.Group>
-            {blogs &&
-              blogs.map((blog) => (
-                <Grid.Column key={blog.id} style={{ marginBottom: 20 }}>
-                  <PostCard blog={blog} />
-                </Grid.Column>
-              ))}
-          </Transition.Group>
+          blogs &&
+          blogs.map((blog) => (
+            <Grid.Column key={blog.id} style={{ marginBottom: 20 }}>
+              <PostCard blog={blog} />
+            </Grid.Column>
+          ))
         )}
       </Grid.Row>
     </Grid>
