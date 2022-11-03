@@ -1,63 +1,89 @@
-import React, { useState } from "react";
-import {Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
-// import { useMutation } from '@apollo/react-hooks'
+import React, { useContext, useState } from "react";
+import { Button, Form } from "semantic-ui-react";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
+import { AuthContext } from "../context/auth";
+import { useForm } from "../util/hooks";
 
+function Login(props) {
+  const context = useContext(AuthContext);
+  const [errors, setErrors] = useState({});
+  const { onChange, onSubmit, values } = useForm(loginAuthorCallback, {
+    authorName: "",
+    password: "",
+  });
 
+  const [loginAuthor, { loading }] = useMutation(LOGIN_AUTHOR, {
+    update(_, { data: { login: authorData } }) {
+      context.login(authorData);
+      props.history.push("/");
+    },
+    onError(err) {
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
+    },
+    variables: values,
+  });
 
-function Login() {
-  const [formState, setFormState] = useState({ email: '', password: ''});
-
-  const handleChange = (event) => {
-    const {name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    setFormState({
-      email: '',
-      password: '',
-    });
-  };
-
+  function loginAuthorCallback() {
+    loginAuthor();
+  }
 
   return (
-    <Grid textAlign="center" style={{ height: '100vh'}} verticalAlign='middle'>
-      <Grid.Column style={{maxWidth: 450}}>
-        <Header>
-          Log-in to your account!
-        </Header>
-        <Form size='large'>
-          <Segment stacked>
-            <Form.Input fluid icon='user' 
-            iconPosition="left" 
-            onChange={handleFormSubmit}
-            placeholder="E-mail address" />
-            <Form.Input
-            fluid
-            icon='lock'
-            iconPosition="left"
-            placeholder='Password'
-            type="password"
-            onChange={handleChange}
-            />
+    <div className="form-container">
+      <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""}>
+        <h1>Login</h1>
+        <Form.Input
+          label="Authorname"
+          placeholder="Authorname.."
+          name="authorName"
+          type="text"
+          value={values.authorName}
+          error={errors.authorName ? true : false}
+          onChange={onChange}
+        />
 
-            <Button color="teal" fluid size="large">
-              Login
-            </Button>
-          </Segment>
-        </Form>
-        <Message>
-          New here? <a href="#">Sign Up</a>
-        </Message>
-      </Grid.Column>
-    </Grid>
+        <Form.Input
+          label="Password"
+          placeholder="Password.."
+          name="password"
+          type="password"
+          value={values.password}
+          error={errors.password ? true : false}
+          onChange={onChange}
+        />
+
+        <Button type="submit" primary>
+          Login
+        </Button>
+      </Form>
+      {Object.keys(errors).length > 0 && (
+        <div className="ui error message">
+          <ul className="list">
+            {Object.values(errors).map((value) => (
+              <li key={value}>{value}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 }
+
+const LOGIN_AUTHOR = gql`
+  mutation login($authorName: String!, $password: String!) {
+    login(
+      authorName: $authorName
+
+      password: $password
+    ) {
+      id
+      email
+      authorName
+      createdAt
+      token
+    }
+  }
+`;
 
 export default Login;

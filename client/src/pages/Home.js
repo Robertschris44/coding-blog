@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 // import { useQuery } from "@apollo/react-hooks";
 // import gql from "graphql-tag";
@@ -8,14 +9,26 @@ import Register from "./Register";
 
 
 
+=======
+import React, { useContext } from "react";
+import { useQuery } from "@apollo/react-hooks";
+import { Grid } from "semantic-ui-react";
+>>>>>>> main
 
+import { AuthContext } from "../context/auth";
+import PostCard from "../components/PostCard";
+import PostForm from "../components/PostForm";
+import { FETCH_BLOGS_QUERY } from "../util/graphql";
 
 function Home() {
-  //   const { loading, data } = useQuery(FETCH_BLOGS_QUERY);
-  //   if (data) {
-  //     console.log(data);
-  //   }
+  const { author } = useContext(AuthContext);
+  const {
+    loading,
+    data: { getBlogs: blogs },
+  } = useQuery(FETCH_BLOGS_QUERY);
+
   return (
+<<<<<<< HEAD
     <div>
 
 <Register />
@@ -81,28 +94,31 @@ function Home() {
 
     </div>
     
+=======
+    <Grid columns={3}>
+      <Grid.Row>
+        <h1> Recent Blogs</h1>
+      </Grid.Row>
+      <Grid.Row>
+        {author && (
+          <Grid.Column>
+            <PostForm />
+          </Grid.Column>
+        )}
+        {loading ? (
+          <h1>Loading Blogs ..</h1>
+        ) : (
+          blogs &&
+          blogs.map((blog) => (
+            <Grid.Column key={blog.id} style={{ marginBottom: 20 }}>
+              <PostCard blog={blog} />
+            </Grid.Column>
+          ))
+        )}
+      </Grid.Row>
+    </Grid>
+>>>>>>> main
   );
 }
-
-// const FETCH_BLOGS_QUERY = gql`
-//   {
-//     getBlogs {
-//       id
-//       description
-//       createdAt
-//       authorName
-//       commentCount
-//       comments {
-//         id
-//         body
-//         authorName
-//       }
-//       likeCount
-//       likes {
-//         authorName
-//       }
-//     }
-//   }
-// `;
 
 export default Home;
