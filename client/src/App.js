@@ -10,12 +10,9 @@ import AuthRoute from "./util/AuthRoute";
 
 import MenuBar from "./components/MenuBar";
 import Home from "./pages/Home";
-<<<<<<< HEAD
-import Login from "./pages/Login"
-=======
 import Login from "./pages/Login";
->>>>>>> main
 import Register from "./pages/Register";
+import Footer from "./pages/Footer";
 
 
 
@@ -33,20 +30,6 @@ import Register from "./pages/Register";
 
 function App() {
   return (
-<<<<<<< HEAD
-    <Router>
-      <Container>
-        <MenuBar />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-      </Container>
-      <Login />
-    </Router>
-
-    // {pageChanger()}
-
-=======
     <AuthProvider>
       <Router>
         <Container>
@@ -56,8 +39,8 @@ function App() {
           <AuthRoute exact path="/register" component={Register} />
         </Container>
       </Router>
+      <Footer />
     </AuthProvider>
->>>>>>> main
   );
 }
 
