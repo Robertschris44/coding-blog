@@ -8,40 +8,30 @@ import "./App.css";
 import { AuthProvider } from "./context/auth";
 import AuthRoute from "./util/AuthRoute";
 
-import MenuBar from "./components/MenuBar";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import MenuBar from './components/MenuBar';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import AboutUs from './pages/AboutUs'
+import Contact from './pages/Contact';
 import Footer from "./pages/Footer";
-
-
-
-// const pageChanger = () => {
-//   if (currentPage === 'Home'){
-//     return <Home />
-//   }
-//   else if (currentPage === 'Login'){
-//     return <Login />
-//   }
-//   else if (currentPage === 'Register'){
-//     return <Register />
-//   }
-// }
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Container>
-          <MenuBar />
-          <Route exact path="/" component={Home} />
-          <AuthRoute exact path="/login" component={Login} />
-          <AuthRoute exact path="/register" component={Register} />
-        </Container>
-      </Router>
+  <AuthProvider>
+    <Router>
+      <Container>
+        <MenuBar />
+        <Route exact path="/" component={Home} />
+        <AuthRoute exact path="/login" component={Login} />
+        <AuthRoute exact path="/register" component={Register} />
+        <Route exact path="/about" component={AboutUs} />
+        <Route exact path="/contact" component={Contact} />
+      </Container>
+    </Router>
       <Footer />
-    </AuthProvider>
-  );
+  </AuthProvider>
+  )
 }
 
 export default App;

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { Grid } from "semantic-ui-react";
+// import gql from "graphql-tag";
+import { Grid, Container} from "semantic-ui-react";
 
 import { AuthContext } from "../context/auth";
 import PostCard from "../components/PostCard";
@@ -15,7 +16,8 @@ function Home() {
   } = useQuery(FETCH_BLOGS_QUERY);
 
   return (
-    <Grid columns={3}>
+    <Container>
+    <Grid columns={3} stackable>
       <Grid.Row>
         <h1> Recent Blogs</h1>
       </Grid.Row>
@@ -37,8 +39,7 @@ function Home() {
         )}
       </Grid.Row>
     </Grid>
-
-  
+    </Container>
   );
 }
 

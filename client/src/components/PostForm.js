@@ -1,5 +1,5 @@
 import React from "react";
-import { ValuesOfCorrectTypeRule } from "graphql";
+// import { ValuesOfCorrectTypeRule } from "graphql";
 
 import { Button, Form } from "semantic-ui-react";
 import gql from "graphql-tag";
@@ -32,7 +32,7 @@ function PostForm() {
     <Form onSubmit={onSubmit}>
       <h2>Create a blog:</h2>
       <Form.Field>
-        <Form.Input
+        <Form.TextArea
           placeholder="Coding Blog"
           name="description"
           onChange={onChange}

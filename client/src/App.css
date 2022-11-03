@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "Nanum Gothic";
+  src: url("./assets/fonts/NanumGothic-ExtraBold.ttf");
+}
+
+#title {
+  opacity: 70%;
+  color: #008080;
+  font-family:"Nanum Gothic";
+  font-weight: bolder;
+}
+
 .page-title {
   display: block !important;
   text-align: center;
@@ -5,7 +17,54 @@
   margin-top: 10px;
 }
 
+#techLogo {
+  opacity: 70%;
+  height: 3vw;
+  width: 3vw;
+}
+
 .form-container {
   width: 400px;
   margin: auto;
+  min-height: 81vh;
+}
+
+#contactForm {
+  min-height: 81vh;
+}
+
+#commentArea {
+  font-size: 125%;
+  width:22vw;
+  height: 200px;
+}
+
+#commentCol {
+  text-align: center;
+}
+
+#foot-container {
+  position: relative;
+}
+
+#con-image {
+  padding-top: 30px;
+  padding-bottom: 5px;
+  height: 300px;
+}
+
+
+#aboutGrid {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#aboutGrid li {
+  margin-bottom: 20px;
+  list-style:disc;
+  font-size: 20px;
+}
+
+#aboutGrid h2{
+  margin-top: 40px;
 }

@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import { Menu } from "semantic-ui-react";
-import { Link } from "react-router-dom";
-
-import { AuthContext } from "../context/auth";
+import React, { useState, useContext } from 'react';
+import { Menu, Image } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import Logo from '../assets/images/techLogo.png';
+import { AuthContext } from '../context/auth';
 
 function MenuBar() {
   const { author, logout } = useContext(AuthContext);
@@ -31,6 +31,14 @@ function MenuBar() {
     </Menu>
   ) : (
     <Menu pointing secondary size="massive" color="teal">
+      <Image id="techLogo" src={Logo} />
+      <Menu.Item
+        id="title"
+        name="Tech-Knowledg-E"
+        onClick={handleItemClick}
+        as={Link}
+        to="/"
+      />
       <Menu.Item
         name="home"
         active={activeItem === "home"}
@@ -53,6 +61,20 @@ function MenuBar() {
           onClick={handleItemClick}
           as={Link}
           to="/register"
+        />
+        <Menu.Item
+          name="about"
+          active={activeItem === 'about'}
+          onClick={handleItemClick}
+          as={Link}
+          to="/about"
+        />
+        <Menu.Item
+          name="contact"
+          active={activeItem === 'contact'}
+          onClick={handleItemClick}
+          as={Link}
+          to="/contact"
         />
       </Menu.Menu>
     </Menu>
