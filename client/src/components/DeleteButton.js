@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
-import { Button, Confirm, Icon } from "semantic-ui-react";
+import { Button, Confirm, Icon, Popup } from "semantic-ui-react";
 
 import { FETCH_BLOGS_QUERY } from "../util/graphql";
 
@@ -10,7 +10,7 @@ function DeleteButton({ blogId, commentId, callback }) {
 
   const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_BLOG_MUTATION;
 
-  const [deletePostOrMutation] = useMutation(mutation, {
+  const [deleteBlogOrComment] = useMutation(mutation, {
     update(proxy) {
       setConfirmOpen(false);
       if (!commentId) {
@@ -29,18 +29,23 @@ function DeleteButton({ blogId, commentId, callback }) {
   });
   return (
     <>
-      <Button
-        as="div"
-        color="red"
-        floated="right"
-        onClick={() => setConfirmOpen(true)}
-      >
-        <Icon name="trash" style={{ margin: 0 }} />
-      </Button>
+      <Popup
+        content={commentId ? "Delete the comment" : "Delete the post"}
+        trigger={
+          <Button
+            as="div"
+            color="red"
+            floated="right"
+            onClick={() => setConfirmOpen(true)}
+          >
+            <Icon name="trash" style={{ margin: 0 }} />
+          </Button>
+        }
+      />
       <Confirm
         open={confirmOpen}
         onCancel={() => setConfirmOpen(false)}
-        onConfirm={deletePostOrMutation}
+        onConfirm={deleteBlogOrComment}
       />
     </>
   );

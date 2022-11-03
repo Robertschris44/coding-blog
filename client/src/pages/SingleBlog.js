@@ -101,7 +101,7 @@ function SingleBlog(props) {
             {author && (
               <Card fluid>
                 <Card.Content>
-                  <p>Post a comment</p>
+                  <p>Create a comment</p>
                   <Form>
                     <div className="ui action input fluid">
                       <input
