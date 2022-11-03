@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Checkbox, Grid, Input, Icon, Image } from "semantic-ui-react";
+import { Form, Button, Checkbox, Grid, Input, Icon } from "semantic-ui-react";
 
 function Contact() {
     return(
@@ -33,17 +33,6 @@ function Contact() {
                     <Form.TextArea id="commentArea" placeholder='Tell us about yourself or how we can help...' />
                 </Grid.Column>
             </Grid.Row>
-            {/* <Grid.Row>
-                <Grid.Column width={3}>
-                    <Image src='/images/wireframe/image.png' />
-                </Grid.Column>
-                <Grid.Column width={10}>
-                    <Image src='/images/wireframe/paragraph.png' />
-                </Grid.Column>
-                <Grid.Column width={3}>
-                    <Image src='/images/wireframe/image.png' />
-                </Grid.Column>
-            </Grid.Row> */}
         </Grid>
     )
 }

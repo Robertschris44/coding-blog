@@ -1,5 +1,5 @@
 import React from "react";
-import { ValuesOfCorrectTypeRule } from "graphql";
+// import { ValuesOfCorrectTypeRule } from "graphql";
 
 import { Button, Form } from "semantic-ui-react";
 import gql from "graphql-tag";
@@ -13,7 +13,7 @@ function PostForm() {
     description: "",
   });
 
-  const [createBlog, { error }] = useMutation(CREATE_BLOG_MUTATION, {
+  const [createBlog] = useMutation(CREATE_BLOG_MUTATION, {
     variables: values,
     update(proxy, result) {
       const data = proxy.readQuery({
