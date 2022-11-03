@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { Menu } from 'semantic-ui-react';
+import React, { useState, useContext } from 'react';
+import { Menu, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Logo from '../assets/images/techLogo.png';
+import { AuthContext } from '../context/auth';
 
 function MenuBar() {
   const { author, logout } = useContext(AuthContext);
