@@ -1,18 +1,26 @@
 {
-  "name": "mern-blog-app",
+  "name": "merng",
   "version": "1.0.0",
   "description": "",
-  "main": "server/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "develop": "concurrently  \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "build": "cd client && npm run build"
+    "serve": "node server",
+    "start": "nodemon server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.5.0",
+    "bcryptjs": "^2.4.3",
+    "graphql": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.11",
+    "react-router-dom": "^5.0.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.2"
+  },
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "nodemon": "^1.19.1"
   }
 }
