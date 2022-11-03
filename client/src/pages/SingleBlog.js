@@ -80,7 +80,7 @@ function SingleBlog(props) {
               </Card.Content>
               <hr />
               <Card.Content extra>
-                <LikeButton user={author} blog={{ id, likeCount, likes }} />
+                <LikeButton author={author} blog={{ id, likeCount, likes }} />
                 <Button
                   as="div"
                   labelPosition="right"
@@ -94,7 +94,7 @@ function SingleBlog(props) {
                   </Label>
                 </Button>
                 {author && author.authorName === authorName && (
-                  <DeleteButton postId={id} callback={deleteBlogCallback} />
+                  <DeleteButton blogId={id} callback={deleteBlogCallback} />
                 )}
               </Card.Content>
             </Card>
@@ -129,7 +129,7 @@ function SingleBlog(props) {
               <Card fluid key={comment.id}>
                 <Card.Content>
                   {author && author.authorName === comment.authorName && (
-                    <DeleteButton postId={id} commentId={comment.id} />
+                    <DeleteButton blogId={id} commentId={comment.id} />
                   )}
                   <Card.Header>{comment.authorName}</Card.Header>
                   <Card.Meta>{moment(comment.createdAt).fromNow()}</Card.Meta>
@@ -146,14 +146,14 @@ function SingleBlog(props) {
 }
 
 const SUBMIT_COMMENT_MUTATION = gql`
-  mutation ($postId: String!, $body: String!) {
-    createComment(postId: $postId, body: $body) {
+  mutation ($blogId: String!, $body: String!) {
+    createComment(blogId: $blogId, body: $body) {
       id
       comments {
         id
         body
         createdAt
-        username
+        authorName
       }
       commentCount
     }
