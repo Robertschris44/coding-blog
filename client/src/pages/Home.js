@@ -37,6 +37,8 @@ function Home() {
         )}
       </Grid.Row>
     </Grid>
+
+  
   );
 }
 

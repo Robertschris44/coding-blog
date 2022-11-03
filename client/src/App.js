@@ -12,6 +12,21 @@ import MenuBar from "./components/MenuBar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Footer from "./pages/Footer";
+
+
+
+// const pageChanger = () => {
+//   if (currentPage === 'Home'){
+//     return <Home />
+//   }
+//   else if (currentPage === 'Login'){
+//     return <Login />
+//   }
+//   else if (currentPage === 'Register'){
+//     return <Register />
+//   }
+// }
 
 function App() {
   return (
@@ -24,6 +39,7 @@ function App() {
           <AuthRoute exact path="/register" component={Register} />
         </Container>
       </Router>
+      <Footer />
     </AuthProvider>
   );
 }
