@@ -12,6 +12,7 @@ import MenuBar from "./components/MenuBar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+//import SingleBlog from "./pages/SingleBlog";
 
 function App() {
   return (
