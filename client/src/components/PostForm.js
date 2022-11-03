@@ -32,7 +32,7 @@ function PostForm() {
     <Form onSubmit={onSubmit}>
       <h2>Create a blog:</h2>
       <Form.Field>
-        <Form.Input
+        <Form.TextArea
           placeholder="Coding Blog"
           name="description"
           onChange={onChange}
