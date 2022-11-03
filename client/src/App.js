@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/contact" component={Contact} />
       </Container>
     </Router>
-    <Footer />
+      <Footer />
   </AuthProvider>
   )
 }

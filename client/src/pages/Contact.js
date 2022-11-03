@@ -1,9 +1,10 @@
 import React from "react";
-import { Form, Button, Checkbox, Grid, Input, Icon } from "semantic-ui-react";
+import { Form, Button, Checkbox, Grid, Input, Icon, Container } from "semantic-ui-react";
 
 function Contact() {
     return(
-        <Grid celled>
+      <Container id="contactForm">
+        <Grid celled stackable>
             <Grid.Row>
                 <Grid.Column width={8}>
                     <Form>
@@ -34,6 +35,7 @@ function Contact() {
                 </Grid.Column>
             </Grid.Row>
         </Grid>
+      </Container>    
     )
 }
 

@@ -26,6 +26,11 @@
 .form-container {
   width: 400px;
   margin: auto;
+  min-height: 81vh;
+}
+
+#contactForm {
+  min-height: 81vh;
 }
 
 #commentArea {
@@ -36,4 +41,8 @@
 
 #commentCol {
   text-align: center;
+}
+
+#foot-container {
+  position: relative;
 }

@@ -5,9 +5,9 @@ import { Segment, Grid, Container, Header, List } from 'semantic-ui-react';
 
 const Footer = () => {
   return (
-    <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em'}}>
-        <Container textAlign="center">
-          <Grid divided inverted stackable>
+    <Segment id="footer" inverted vertical style={{ padding: '1em 0em'}}>
+        <Container id="foot-container" textAlign="center">
+          <Grid id="foot-wrap" divided inverted stackable>
             <Grid.Column width={3}>
               <Header inverted as='h4' content='Creators' />
               <List link inverted>
@@ -34,7 +34,6 @@ const Footer = () => {
             </Grid.Column>
           </Grid>
         </Container>
-        
       </Segment>
   )
 }
