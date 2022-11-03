@@ -13,9 +13,11 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Contact from './pages/Contact';
+import Footer from "./pages/Footer";
 
 function App() {
   return (
+  <AuthProvider>
     <Router>
       <Container>
         <MenuBar />
@@ -25,7 +27,9 @@ function App() {
         <Route exact path="/contact" component={Contact} />
       </Container>
     </Router>
-  );
+    <Footer />
+  </AuthProvider>
+  )
 }
 
 export default App;
